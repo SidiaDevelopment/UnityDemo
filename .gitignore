@@ -1,0 +1,30 @@
+# C#
+obj
+**/bin/Debug
+**/bin/Release
+**/packages
+
+# IDEs
+*.user
+.vs
+.vscode
+.idea
+build
+
+# Unity
+!/Packages
+/Library
+/Temp
+/Logs
+/UserSettings
+/*.csproj
+/*.sln
+.gradle
+**/Assets/Plugins/Editor/JetBrains
+**/Assets/Plugins/Editor/JetBrains.meta
+
+# Blender
+*.blend1
+
+# Jenny
+*.userproperties
