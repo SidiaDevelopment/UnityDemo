@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,23 +12,21 @@ public class PlaceableView : EntityView
     , IAnyEditmodeRemovedListener
     , IPointerClickHandler
 {
-    // TODO: Turn off when edit mode exited
     public BoxCollider DragCollider;
     
-    private CameraView _cameraView;
-    private bool _dragging;
-    private Plane _plane;
-    private MeshRenderer _renderer;
-    private Sequence _sequence;
-    private MaterialPropertyBlock _mpb;
-    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
-    private Color _originalColor;
-    private bool _scaling;
-    private bool _rotating;
-    private Vector2 _startPosition;
-    private Vector3 _originalScale;
-    private Quaternion _originalRotation
-        ;
+    protected CameraView _cameraView;
+    protected bool _dragging;
+    protected Plane _plane;
+    protected MeshRenderer _renderer;
+    protected Sequence _sequence;
+    protected MaterialPropertyBlock _mpb;
+    protected static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    protected Color _originalColor;
+    protected bool _scaling;
+    protected bool _rotating;
+    protected Vector2 _startPosition;
+    protected Vector3 _originalScale;
+    protected Quaternion _originalRotation;
 
     public override void Link(Contexts contexts, GameEntity entity)
     {
@@ -42,11 +39,32 @@ public class PlaceableView : EntityView
         _entity.AddAnyEditmodeRemovedListener(this);
         
         InitializeModel();
-        SetInitialPosition();
+        _cameraView = (CameraView)_contexts.game.cameraEntity.view.Value;
+        _plane = new Plane(Vector3.up, Vector3.zero);
 
-        // TODO: Flag loading phase
-        var isSelected = Input.GetMouseButton(0) && _contexts.game.isEditmode;
-        _entity.isPlaceableSelected = isSelected;
+        if (_contexts.game.isLoading)
+        {
+            if (_entity.hasPlaceablePosition)
+            {
+                transform.position = _entity.placeablePosition.Value;
+            }
+
+            if (_entity.hasPlaceableRotation)
+            {
+                transform.rotation = Quaternion.Euler(_entity.placeableRotation.Value);
+            }
+
+            if (_entity.hasPlaceableScale)
+            {
+                transform.localScale = _entity.placeableScale.Value;
+            }
+        }
+        else
+        {
+            SetInitialPosition();
+        }
+
+        _entity.isPlaceableSelected = !_contexts.game.isLoading;
     }
 
     private void Awake()
@@ -54,7 +72,7 @@ public class PlaceableView : EntityView
         _mpb = new MaterialPropertyBlock();
     }
 
-    private void InitializeModel()
+    protected virtual void InitializeModel()
     {
         var index = _entity.placeableIndex.Value;
         var placeable = _contexts.game.GetEntityWithPlaceable(index).placeable;
@@ -67,12 +85,11 @@ public class PlaceableView : EntityView
         FitBoxCollider(go);
     }
 
-    private void SetInitialPosition()
+    protected void SetInitialPosition()
     {
-        _cameraView = (CameraView)_contexts.game.cameraEntity.view.Value;
-        _plane = new Plane(Vector3.up, Vector3.zero);
         _dragging = true;
-
+        _entity.ReplacePlaceableScale(!_entity.isCharacter ? Vector3.one : Vector3.one * 3);
+        _entity.ReplacePlaceableRotation(Vector3.zero);
         UpdatePosition();
     }
 
@@ -85,7 +102,7 @@ public class PlaceableView : EntityView
         DragCollider.enabled = _contexts.game.isEditmode;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         UpdatePosition();
     }
@@ -99,7 +116,7 @@ public class PlaceableView : EntityView
     }
 #endif
 
-    private void UpdatePosition()
+    protected void UpdatePosition()
     {
         if (!_dragging && !_scaling && !_rotating) return;
         if (!Input.GetMouseButton(0))
@@ -117,6 +134,7 @@ public class PlaceableView : EntityView
         if (_dragging)
         {
             transform.position = point;
+            _entity.ReplacePlaceablePosition(point);
         } 
         else if (_scaling)
         {
@@ -127,6 +145,7 @@ public class PlaceableView : EntityView
             value = Vector3.Max(Vector3.one * 0.1f, value);
             value = Vector3.Min(Vector3.one * 5, value);
             transform.localScale = value;
+            _entity.ReplacePlaceableScale(value);
         }
         else if (_rotating)
         {
@@ -135,6 +154,7 @@ public class PlaceableView : EntityView
             var value = _originalRotation;
             value *= Quaternion.Euler(Vector3.down * rotationModifier);
             transform.rotation = value;
+            _entity.ReplacePlaceableRotation(value.eulerAngles);
         }
     }
 
@@ -164,6 +184,7 @@ public class PlaceableView : EntityView
 
     public void OnPlaceableSelected(GameEntity entity)
     {
+        if (_entity.isCharacter) return;
         _sequence?.Kill();
         _sequence = DOTween.Sequence();
 
@@ -201,14 +222,16 @@ public class PlaceableView : EntityView
         }
     }
 
-    public void OnAnyEditmode(GameEntity entity)
+    public virtual void OnAnyEditmode(GameEntity entity)
     {
         DragCollider.enabled = true;
+        _entity.isPlaceableSelected = false;
     }
 
     public void OnAnyEditmodeRemoved(GameEntity entity)
     {
         DragCollider.enabled = false;
+        _entity.isPlaceableSelected = false;
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -15,7 +15,7 @@ public sealed class PinchZoomSystem : IExecuteSystem
 
     public void Execute()
     {
-        if (Input.touchCount != 2)
+        if (Input.touchCount != 2 || _contexts.game.movement.Value != Vector2.zero)
         {
             _pinching = false;
             _contexts.game.isPinch = false;

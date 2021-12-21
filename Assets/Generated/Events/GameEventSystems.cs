@@ -14,6 +14,9 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyEditmodeEventSystem(contexts)); // priority: 0
         Add(new AnyEditmodeRemovedEventSystem(contexts)); // priority: 0
         Add(new AnyPinchRemovedEventSystem(contexts)); // priority: 0
+        Add(new PlaceablePositionEventSystem(contexts)); // priority: 0
+        Add(new PlaceableRotationEventSystem(contexts)); // priority: 0
+        Add(new PlaceableScaleEventSystem(contexts)); // priority: 0
         Add(new PlaceableSelectedEventSystem(contexts)); // priority: 0
         Add(new PlaceableSelectedRemovedEventSystem(contexts)); // priority: 0
         Add(new AnyPlaceableSelectedEventSystem(contexts)); // priority: 0

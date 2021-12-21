@@ -8,8 +8,10 @@
         Add(new CameraFeature(contexts));
         Add(new UiParentFeature(contexts));
         Add(new MenuBarFeature(contexts));
+        Add(new CharacterMovementFeature(contexts));
         Add(new PlaceableFeature(contexts));
         Add(new ItemPickerFeature(contexts));
+        Add(new LoadSaveFeature(contexts));
 
         Add(new GameCleanupSystems(contexts));
     }

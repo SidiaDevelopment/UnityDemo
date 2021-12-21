@@ -15,20 +15,31 @@ public static class GameComponentsLookup {
     public const int Camera = 4;
     public const int CameraOffset = 5;
     public const int CameraOffsetListener = 6;
-    public const int Destroyed = 7;
-    public const int DestroyedListener = 8;
-    public const int Editmode = 9;
-    public const int Pinch = 10;
-    public const int Placeable = 11;
-    public const int PlaceableIndex = 12;
-    public const int PlaceableSelected = 13;
-    public const int PlaceableSelectedListener = 14;
-    public const int PlaceableSelectedRemovedListener = 15;
-    public const int PlaceableTransformMode = 16;
-    public const int UiParent = 17;
-    public const int View = 18;
+    public const int Character = 7;
+    public const int Destroyed = 8;
+    public const int DestroyedListener = 9;
+    public const int Editmode = 10;
+    public const int Jump = 11;
+    public const int Loading = 12;
+    public const int Movement = 13;
+    public const int Pinch = 14;
+    public const int Placeable = 15;
+    public const int PlaceableIndex = 16;
+    public const int PlaceablePosition = 17;
+    public const int PlaceablePositionListener = 18;
+    public const int PlaceableRotation = 19;
+    public const int PlaceableRotationListener = 20;
+    public const int PlaceableScale = 21;
+    public const int PlaceableScaleListener = 22;
+    public const int PlaceableSelected = 23;
+    public const int PlaceableSelectedListener = 24;
+    public const int PlaceableSelectedRemovedListener = 25;
+    public const int PlaceableTransformMode = 26;
+    public const int Save = 27;
+    public const int UiParent = 28;
+    public const int View = 29;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 30;
 
     public static readonly string[] componentNames = {
         "AnyEditmodeListener",
@@ -38,16 +49,27 @@ public static class GameComponentsLookup {
         "Camera",
         "CameraOffset",
         "CameraOffsetListener",
+        "Character",
         "Destroyed",
         "DestroyedListener",
         "Editmode",
+        "Jump",
+        "Loading",
+        "Movement",
         "Pinch",
         "Placeable",
         "PlaceableIndex",
+        "PlaceablePosition",
+        "PlaceablePositionListener",
+        "PlaceableRotation",
+        "PlaceableRotationListener",
+        "PlaceableScale",
+        "PlaceableScaleListener",
         "PlaceableSelected",
         "PlaceableSelectedListener",
         "PlaceableSelectedRemovedListener",
         "PlaceableTransformMode",
+        "Save",
         "UiParent",
         "View"
     };
@@ -60,16 +82,27 @@ public static class GameComponentsLookup {
         typeof(CameraComponent),
         typeof(CameraOffsetComponent),
         typeof(CameraOffsetListenerComponent),
+        typeof(CharacterComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
         typeof(EditmodeComponent),
+        typeof(JumpComponent),
+        typeof(LoadingComponent),
+        typeof(MovementComponent),
         typeof(PinchComponent),
         typeof(PlaceableComponent),
         typeof(PlaceableIndexComponent),
+        typeof(PlaceablePositionComponent),
+        typeof(PlaceablePositionListenerComponent),
+        typeof(PlaceableRotationComponent),
+        typeof(PlaceableRotationListenerComponent),
+        typeof(PlaceableScaleComponent),
+        typeof(PlaceableScaleListenerComponent),
         typeof(PlaceableSelectedComponent),
         typeof(PlaceableSelectedListenerComponent),
         typeof(PlaceableSelectedRemovedListenerComponent),
         typeof(PlaceableTransformModeComponent),
+        typeof(SaveComponent),
         typeof(UiParentComponent),
         typeof(ViewComponent)
     };
