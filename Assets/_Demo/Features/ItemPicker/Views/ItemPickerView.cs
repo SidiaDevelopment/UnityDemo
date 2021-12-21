@@ -1,7 +1,7 @@
 ﻿using Entitas;
 using UnityEngine;
 
-public class ItemPickerView : UiElementView
+public class ItemPickerView : EntityView
 {
     public GameObject ParentPrefab;
     

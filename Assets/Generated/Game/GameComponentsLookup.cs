@@ -24,13 +24,11 @@ public static class GameComponentsLookup {
     public const int PlaceableSelected = 13;
     public const int PlaceableSelectedListener = 14;
     public const int PlaceableSelectedRemovedListener = 15;
-    public const int UiElementVisible = 16;
-    public const int UiElementVisibleListener = 17;
-    public const int UiElementVisibleRemovedListener = 18;
-    public const int UiParent = 19;
-    public const int View = 20;
+    public const int PlaceableTransformMode = 16;
+    public const int UiParent = 17;
+    public const int View = 18;
 
-    public const int TotalComponents = 21;
+    public const int TotalComponents = 19;
 
     public static readonly string[] componentNames = {
         "AnyEditmodeListener",
@@ -49,9 +47,7 @@ public static class GameComponentsLookup {
         "PlaceableSelected",
         "PlaceableSelectedListener",
         "PlaceableSelectedRemovedListener",
-        "UiElementVisible",
-        "UiElementVisibleListener",
-        "UiElementVisibleRemovedListener",
+        "PlaceableTransformMode",
         "UiParent",
         "View"
     };
@@ -73,9 +69,7 @@ public static class GameComponentsLookup {
         typeof(PlaceableSelectedComponent),
         typeof(PlaceableSelectedListenerComponent),
         typeof(PlaceableSelectedRemovedListenerComponent),
-        typeof(UiElementVisibleComponent),
-        typeof(UiElementVisibleListenerComponent),
-        typeof(UiElementVisibleRemovedListenerComponent),
+        typeof(PlaceableTransformModeComponent),
         typeof(UiParentComponent),
         typeof(ViewComponent)
     };

@@ -7,6 +7,7 @@
         Add(new EditmodeFeature(contexts));
         Add(new CameraFeature(contexts));
         Add(new UiParentFeature(contexts));
+        Add(new MenuBarFeature(contexts));
         Add(new PlaceableFeature(contexts));
         Add(new ItemPickerFeature(contexts));
 

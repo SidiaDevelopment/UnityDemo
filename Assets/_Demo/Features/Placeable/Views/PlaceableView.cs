@@ -24,6 +24,12 @@ public class PlaceableView : EntityView
     private MaterialPropertyBlock _mpb;
     private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
     private Color _originalColor;
+    private bool _scaling;
+    private bool _rotating;
+    private Vector2 _startPosition;
+    private Vector3 _originalScale;
+    private Quaternion _originalRotation
+        ;
 
     public override void Link(Contexts contexts, GameEntity entity)
     {
@@ -95,24 +101,61 @@ public class PlaceableView : EntityView
 
     private void UpdatePosition()
     {
-        if (!_dragging) return;
+        if (!_dragging && !_scaling && !_rotating) return;
         if (!Input.GetMouseButton(0))
         {
             _dragging = false;
+            _scaling = false;
+            _rotating = false;
             return;
         }
 
         var ray = _cameraView.MainCamera.ScreenPointToRay(Input.mousePosition);
         if (!_plane.Raycast(ray, out var distance)) return;
-
         var point = ray.GetPoint(distance);
-        transform.position = point;
+
+        if (_dragging)
+        {
+            transform.position = point;
+        } 
+        else if (_scaling)
+        {
+            var yDelta = Input.mousePosition.y - _startPosition.y;
+            var scaleModifier = yDelta / 500f;
+            var value = _originalScale;
+            value += Vector3.one * scaleModifier;
+            value = Vector3.Max(Vector3.one * 0.1f, value);
+            value = Vector3.Min(Vector3.one * 5, value);
+            transform.localScale = value;
+        }
+        else if (_rotating)
+        {
+            var xDelta = Input.mousePosition.x - _startPosition.x;
+            var rotationModifier = xDelta / 5f;
+            var value = _originalRotation;
+            value *= Quaternion.Euler(Vector3.down * rotationModifier);
+            transform.rotation = value;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _dragging = _contexts.game.isEditmode;
         _entity.isPlaceableSelected = _contexts.game.isEditmode;
+        _startPosition = eventData.position;
+        if (_contexts.game.placeableTransformMode.Value == TransformMode.Position)
+        {
+            _dragging = _contexts.game.isEditmode;
+        }
+        else if (_contexts.game.placeableTransformMode.Value == TransformMode.Scale)
+        {
+            _scaling = _contexts.game.isEditmode;
+            _originalScale = transform.localScale;
+        }
+        else if (_contexts.game.placeableTransformMode.Value == TransformMode.Rotation)
+        {
+            _rotating = _contexts.game.isEditmode;
+            _originalRotation = transform.rotation;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -171,5 +214,10 @@ public class PlaceableView : EntityView
     public void OnPointerClick(PointerEventData eventData)
     {
         _entity.isPlaceableSelected = _contexts.game.isEditmode;
+    }
+
+    private void OnDestroy()
+    {
+        _sequence?.Kill();
     }
 }

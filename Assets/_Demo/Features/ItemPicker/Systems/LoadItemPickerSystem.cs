@@ -13,6 +13,5 @@ public sealed class LoadItemPickerSystem : IInitializeSystem
     {
         var parent = _contexts.game.uiParent.Value;
         var e =_contexts.game.Instantiate(Res.ItemPicker, parent);
-        e.isUiElementVisible = true;
     }
 }

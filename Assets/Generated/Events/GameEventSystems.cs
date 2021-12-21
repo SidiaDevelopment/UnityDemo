@@ -17,7 +17,5 @@ public sealed class GameEventSystems : Feature {
         Add(new PlaceableSelectedEventSystem(contexts)); // priority: 0
         Add(new PlaceableSelectedRemovedEventSystem(contexts)); // priority: 0
         Add(new AnyPlaceableSelectedEventSystem(contexts)); // priority: 0
-        Add(new UiElementVisibleEventSystem(contexts)); // priority: 0
-        Add(new UiElementVisibleRemovedEventSystem(contexts)); // priority: 0
     }
 }
