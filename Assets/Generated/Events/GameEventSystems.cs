@@ -11,7 +11,12 @@ public sealed class GameEventSystems : Feature {
     public GameEventSystems(Contexts contexts) {
         Add(new CameraOffsetEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
+        Add(new AnyEditmodeEventSystem(contexts)); // priority: 0
+        Add(new AnyEditmodeRemovedEventSystem(contexts)); // priority: 0
         Add(new AnyPinchRemovedEventSystem(contexts)); // priority: 0
+        Add(new PlaceableSelectedEventSystem(contexts)); // priority: 0
+        Add(new PlaceableSelectedRemovedEventSystem(contexts)); // priority: 0
+        Add(new AnyPlaceableSelectedEventSystem(contexts)); // priority: 0
         Add(new UiElementVisibleEventSystem(contexts)); // priority: 0
         Add(new UiElementVisibleRemovedEventSystem(contexts)); // priority: 0
     }

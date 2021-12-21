@@ -2,9 +2,9 @@
 
 public partial class GameContext
 {
-    public GameEntity Instantiate(string resource, Transform parent = null)
+    public GameEntity Instantiate(string resource, Transform parent = null, GameEntity entity = null)
     {
-        var entity = CreateEntity();
+        entity = entity == null ? CreateEntity() : entity;
         var gameObject = Object.Instantiate(Resources.Load<GameObject>(resource), parent);
         if (gameObject == null) return null;
 

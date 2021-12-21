@@ -16,4 +16,6 @@ public partial class ScriptableGameConfig : SearchableScriptableObject, IGameCon
     [SerializeField, UnityEngine.Header("Camera")] float _defaultZoom; public float DefaultZoom => _defaultZoom;
     [SerializeField] float _scrollZoomSpeed; public float ScrollZoomSpeed => _scrollZoomSpeed;
     [SerializeField] float _zoomLerpSpeed; public float ZoomLerpSpeed => _zoomLerpSpeed;
+    [SerializeField, UnityEngine.Header("Placeables")] UnityEngine.Color _highlightColor; public UnityEngine.Color HighlightColor => _highlightColor;
+    [SerializeField, UnityEngine.Header("Placeables Debug")] bool _drawWireframe; public bool DrawWireframe => _drawWireframe;
 }

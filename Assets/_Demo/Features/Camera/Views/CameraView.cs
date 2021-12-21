@@ -6,7 +6,8 @@ public class CameraView : EntityView
     , ICameraOffsetListener
     , IAnyPinchRemovedListener
 {
-    public Camera Camera;
+    public Camera MainCamera;
+    public Camera UiCamera;
 
     private float _defaultDistance;
     private float _zoomTarget = 5;
@@ -36,7 +37,7 @@ public class CameraView : EntityView
         
         _zoomTarget = Mathf.Clamp(_zoomTarget, 0.4f, 5.8f);
         _zoom = Mathf.Lerp(_zoom, _zoomTarget, _contexts.config.game.ZoomLerpSpeed);
-        Camera.transform.localPosition = new Vector3(0, 0, _zoom * -_defaultDistance);
+        MainCamera.transform.localPosition = new Vector3(0, 0, _zoom * -_defaultDistance);
     }
 
     public void OnAnyPinchRemoved(GameEntity entity)

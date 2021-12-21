@@ -1,4 +1,5 @@
 ﻿using Entitas;
+using UnityEngine;
 
 public sealed class LoadUiParent : IInitializeSystem
 {
@@ -13,6 +14,11 @@ public sealed class LoadUiParent : IInitializeSystem
     {
         var parent = _contexts.game.Instantiate(Res.UiParent);
         var transform = parent.view.Value.gameObject.transform;
+        
+        var canvas = parent.view.Value.GetComponent<Canvas>();
+        var cameraView = (CameraView)_contexts.game.cameraEntity.view.Value;
+        canvas.worldCamera = cameraView.UiCamera;
+        
         _contexts.game.SetUiParent(transform);
     }
 }

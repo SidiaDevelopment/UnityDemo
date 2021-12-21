@@ -15,3 +15,5 @@ MonoBehaviour:
   _defaultZoom: 5
   _scrollZoomSpeed: 0.5
   _zoomLerpSpeed: 0.08
+  _highlightColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  _drawWireframe: 1

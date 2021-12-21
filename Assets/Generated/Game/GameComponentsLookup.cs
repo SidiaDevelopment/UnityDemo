@@ -8,29 +8,47 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AnyPinchRemovedListener = 0;
-    public const int Camera = 1;
-    public const int CameraOffset = 2;
-    public const int CameraOffsetListener = 3;
-    public const int Destroyed = 4;
-    public const int DestroyedListener = 5;
-    public const int Pinch = 6;
-    public const int UiElementVisible = 7;
-    public const int UiElementVisibleListener = 8;
-    public const int UiElementVisibleRemovedListener = 9;
-    public const int UiParent = 10;
-    public const int View = 11;
+    public const int AnyEditmodeListener = 0;
+    public const int AnyEditmodeRemovedListener = 1;
+    public const int AnyPinchRemovedListener = 2;
+    public const int AnyPlaceableSelectedListener = 3;
+    public const int Camera = 4;
+    public const int CameraOffset = 5;
+    public const int CameraOffsetListener = 6;
+    public const int Destroyed = 7;
+    public const int DestroyedListener = 8;
+    public const int Editmode = 9;
+    public const int Pinch = 10;
+    public const int Placeable = 11;
+    public const int PlaceableIndex = 12;
+    public const int PlaceableSelected = 13;
+    public const int PlaceableSelectedListener = 14;
+    public const int PlaceableSelectedRemovedListener = 15;
+    public const int UiElementVisible = 16;
+    public const int UiElementVisibleListener = 17;
+    public const int UiElementVisibleRemovedListener = 18;
+    public const int UiParent = 19;
+    public const int View = 20;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 21;
 
     public static readonly string[] componentNames = {
+        "AnyEditmodeListener",
+        "AnyEditmodeRemovedListener",
         "AnyPinchRemovedListener",
+        "AnyPlaceableSelectedListener",
         "Camera",
         "CameraOffset",
         "CameraOffsetListener",
         "Destroyed",
         "DestroyedListener",
+        "Editmode",
         "Pinch",
+        "Placeable",
+        "PlaceableIndex",
+        "PlaceableSelected",
+        "PlaceableSelectedListener",
+        "PlaceableSelectedRemovedListener",
         "UiElementVisible",
         "UiElementVisibleListener",
         "UiElementVisibleRemovedListener",
@@ -39,13 +57,22 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AnyEditmodeListenerComponent),
+        typeof(AnyEditmodeRemovedListenerComponent),
         typeof(AnyPinchRemovedListenerComponent),
+        typeof(AnyPlaceableSelectedListenerComponent),
         typeof(CameraComponent),
         typeof(CameraOffsetComponent),
         typeof(CameraOffsetListenerComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
+        typeof(EditmodeComponent),
         typeof(PinchComponent),
+        typeof(PlaceableComponent),
+        typeof(PlaceableIndexComponent),
+        typeof(PlaceableSelectedComponent),
+        typeof(PlaceableSelectedListenerComponent),
+        typeof(PlaceableSelectedRemovedListenerComponent),
         typeof(UiElementVisibleComponent),
         typeof(UiElementVisibleListenerComponent),
         typeof(UiElementVisibleRemovedListenerComponent),

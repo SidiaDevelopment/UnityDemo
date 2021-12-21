@@ -4,10 +4,12 @@
     {
         Add(new GameEventSystems(contexts));
 
+        Add(new EditmodeFeature(contexts));
         Add(new CameraFeature(contexts));
         Add(new UiParentFeature(contexts));
+        Add(new PlaceableFeature(contexts));
         Add(new ItemPickerFeature(contexts));
-        
+
         Add(new GameCleanupSystems(contexts));
     }
 }
