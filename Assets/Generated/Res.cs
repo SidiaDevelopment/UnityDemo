@@ -13,6 +13,7 @@ public static class Res {
     public const string CharacterCamera = "CharacterCamera";
     public const string PlaceableCharacterPreview = "PlaceableCharacterPreview";
     public const string MobileControls = "MobileControls";
+    public const string CityPicker = "CityPicker";
     public const string ItemPicker = "ItemPicker";
     public const string MenuBar = "MenuBar";
     public const string Placeable = "Placeable";

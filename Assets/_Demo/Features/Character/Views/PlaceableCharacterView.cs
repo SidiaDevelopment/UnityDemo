@@ -188,5 +188,6 @@ public class PlaceableCharacterView : PlaceableView
         {
             transform.rotation = Quaternion.Euler(_entity.placeableRotation.Value);
         }
+        _collisions.Clear();
     }
 }

@@ -56,8 +56,6 @@ public sealed class LoadSaveSystem : ReactiveSystem<GameEntity>, IInitializeSyst
                 Index = index,
                 IsCharacter = isCharacter
             });
-
-            Debug.Log(scale);
         }
 
         var savestate = new SavedMap()

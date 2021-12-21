@@ -18,4 +18,16 @@ public partial class ScriptableGameConfig : SearchableScriptableObject, IGameCon
     [SerializeField] float _zoomLerpSpeed; public float ZoomLerpSpeed => _zoomLerpSpeed;
     [SerializeField, UnityEngine.Header("Placeables")] UnityEngine.Color _highlightColor; public UnityEngine.Color HighlightColor => _highlightColor;
     [SerializeField, UnityEngine.Header("Placeables Debug")] bool _drawWireframe; public bool DrawWireframe => _drawWireframe;
+    [SerializeField, UnityEngine.Header("Skybox")] UnityEngine.Color _dayColor; public UnityEngine.Color DayColor => _dayColor;
+    [SerializeField] float _dayExposure; public float DayExposure => _dayExposure;
+    [SerializeField] float _dayLight; public float DayLight => _dayLight;
+    [SerializeField] UnityEngine.Color _eveningColor; public UnityEngine.Color EveningColor => _eveningColor;
+    [SerializeField] float _eveningExposure; public float EveningExposure => _eveningExposure;
+    [SerializeField] float _eveningLight; public float EveningLight => _eveningLight;
+    [SerializeField] UnityEngine.Color _nightColor; public UnityEngine.Color NightColor => _nightColor;
+    [SerializeField] float _nightExposure; public float NightExposure => _nightExposure;
+    [SerializeField] float _nightLight; public float NightLight => _nightLight;
+    [SerializeField] UnityEngine.Color _morningColor; public UnityEngine.Color MorningColor => _morningColor;
+    [SerializeField] float _morningExposure; public float MorningExposure => _morningExposure;
+    [SerializeField] float _morningLight; public float MorningLight => _morningLight;
 }

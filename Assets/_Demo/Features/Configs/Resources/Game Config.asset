@@ -17,3 +17,15 @@ MonoBehaviour:
   _zoomLerpSpeed: 0.08
   _highlightColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   _drawWireframe: 1
+  _dayColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  _dayExposure: 1.3
+  _dayLight: 1
+  _eveningColor: {r: 0.74509805, g: 0.24313726, b: 0.61960787, a: 1}
+  _eveningExposure: 0.4
+  _eveningLight: 0.4
+  _nightColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  _nightExposure: 0.05
+  _nightLight: 0.1
+  _morningColor: {r: 1, g: 0.52156866, b: 0, a: 1}
+  _morningExposure: 0.6
+  _morningLight: 0.6

@@ -25,7 +25,7 @@ public class CameraView : EntityView
         _entity.AddAnyPinchRemovedListener(this);
         _entity.AddAnyEditmodeListener(this);
         _entity.AddAnyEditmodeRemovedListener(this);
-        
+
         _defaultDistance = _contexts.config.game.DefaultZoom;
     }
 
@@ -67,6 +67,11 @@ public class CameraView : EntityView
         }
         else
         {
+            if (Input.touchCount > 1)
+            {
+                _rotating = false;
+                return;
+            }
             if (Input.GetMouseButton(0) && !_rotating)
             {
                 _rotating = true;
@@ -79,7 +84,7 @@ public class CameraView : EntityView
                 return;
             }
         }
-        
+
         var offset = pos - _initialPosition;
         var euler = _initialRotation.eulerAngles;
         euler += new Vector3(-offset.y / 5f, offset.x / 5f, 0);
@@ -104,7 +109,7 @@ public class CameraView : EntityView
         var zoom = Mathf.Clamp(_zoomTarget, 0.5f, 11.6f);
         _entity.ReplaceCameraOffset(_entity.cameraOffset.Position, zoom);
     }
-    
+
     public void OnAnyEditmode(GameEntity entity)
     {
         transform.SetParent(null);

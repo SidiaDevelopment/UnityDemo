@@ -12,6 +12,8 @@
         Add(new PlaceableFeature(contexts));
         Add(new ItemPickerFeature(contexts));
         Add(new LoadSaveFeature(contexts));
+        Add(new WeatherFeature(contexts));
+        Add(new CityFeature(contexts));
 
         Add(new GameCleanupSystems(contexts));
     }
